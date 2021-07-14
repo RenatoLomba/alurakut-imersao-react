@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Flex, useColorMode } from '@chakra-ui/react';
+import { Flex /*, useColorMode*/ } from '@chakra-ui/react';
 import { WhiteBox } from '../components/white-box';
 import { MainGrid } from '../components/main-grid';
 import { ProfileSidebar } from '../components/profile-sidebar';
@@ -9,7 +9,7 @@ import { Title } from '../components/title';
 import { OrkutNostalgicIconset } from '../lib/alurakut-common/orkut-nostalgic-iconset';
 
 export default function Home() {
-  const { toggleColorMode } = useColorMode();
+  // const { toggleColorMode } = useColorMode();
 
   const github = 'RenatoLomba';
   const favorites = [
@@ -41,7 +41,7 @@ export default function Home() {
         <Flex flexDirection="column" gridArea={{ lg: 'rightArea' }}>
           <ProfileRelations favorites={favorites} />
         </Flex>
-        <Button onClick={toggleColorMode}>Toggle</Button>
+        {/* <Button onClick={toggleColorMode}>Toggle</Button> */}
       </MainGrid>
     </>
   );
