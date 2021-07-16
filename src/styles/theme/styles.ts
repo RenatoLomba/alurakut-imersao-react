@@ -1,7 +1,5 @@
-import { GlobalStyleProps, mode } from '@chakra-ui/theme-tools';
-
 export const styles = {
-  global: (props: GlobalStyleProps) => ({
+  global: () => ({
     '*::-webkit-scrollbar': {
       width: '0.5rem',
     },
@@ -16,7 +14,12 @@ export const styles = {
       bg: '#555',
     },
     body: {
-      bg: mode('background.primary', 'crimson')(props),
+      // bg: mode('background.primary', 'crimson')(props),
+      backgroundImage: 'url("/images/wallpaper.jpg")',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed',
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
       fontFamily: 'sans-serif',
     },
     'a, button': {
