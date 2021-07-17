@@ -22,35 +22,35 @@ export default function Home() {
   const [followers, setFollowers] = useState<ProfileRelation[]>([]);
   const [favorites, setFavorites] = useState<ProfileRelation[]>([]);
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const api = new Api();
 
-    setCommunities([
-      ...communities,
-      {
-        title: communityName,
-        imgUrl: communityImageUrl,
-        id: communities.length + 1,
-      },
-    ]);
+    const community = {
+      title: communityName,
+      imgUrl: communityImageUrl,
+      creatorSlug: github,
+    };
+
+    const createdCommunity = await api.createCommunity(community);
+
+    setCommunities([createdCommunity, ...communities]);
 
     setCommunityName('');
     setCommunityImageUrl('');
   };
 
   useEffect(() => {
-    const fetchFollowersData = async () => {
-      const api = new Api();
+    const api = new Api();
+    const fetchData = async () => {
       const responseFollowers = await api.getRelationsData(github, 'followers');
-      setFollowers(responseFollowers);
-    };
-    const fetchFavoritesData = async () => {
-      const api = new Api();
       const responseFavorites = await api.getRelationsData(github, 'following');
+      const responseCommunities = await api.getCommunitiesGraphQL();
+      setFollowers(responseFollowers);
       setFavorites(responseFavorites);
+      setCommunities(responseCommunities);
     };
-    fetchFollowersData();
-    fetchFavoritesData();
+    fetchData();
   }, []);
 
   return (

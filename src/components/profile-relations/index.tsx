@@ -108,7 +108,7 @@ export const ProfileRelations = ({
       <ProfileRelationsList>
         {relations.slice(0, 6).map((item) => {
           return (
-            <ListItem key={item.id.toLocaleString()}>
+            <ListItem key={item.id.toString()}>
               <ProfileRelationsLink href={`/users/${item.title}`}>
                 <ProfileRelationsImage src={item.imgUrl} />
 
