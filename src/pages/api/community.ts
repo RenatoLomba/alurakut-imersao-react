@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { SiteClient } from 'datocms-client';
+const { SiteClient } = require('datocms-client'); // eslint-disable-line
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,7 +12,7 @@ export default async function handler(
   const fullAccessToken = process.env.FULL_ACCESS_TOKEN;
   const client = new SiteClient(fullAccessToken);
 
-  const { title, imgUrl, creatorSlug } = JSON.parse(req.body);
+  const { title, imgUrl, creatorSlug } = req.body;
 
   const community = await client.items.create({
     itemType: '972859',
