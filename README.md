@@ -1,34 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Alurakut
+[thumbnail-gif](https://github.com/RenatoLomba/alurakut-imersao-react/blob/main/public/images/GIF%2018-07-2021%2017-32-10.gif "GIF 18-07-2021 17-32-10.gif")
 
-## Getting Started
+## 🚀 Sobre
+Projeto construído durante a Imersão React #3 da Alura, utilizando React com NextJs, projeto é uma reinvenção da famosa rede social Orkut do passado, agora resgatada, utilizando tecnologias Front-end mais modernas!
 
-First, run the development server:
+## 🔧 Ferramentas utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+ - [React](https://pt-br.reactjs.org/)
+ - [NextJs](https://nextjs.org/)
+ - [ChakraUI](https://chakra-ui.com/)
+ - [Typescript](https://www.typescriptlang.org)
+ - [DatoCMS](https://www.datocms.com)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💻Utilização
+Primeiro, baixe o projeto utilizando o git, ao baixado, dentro da pasta raiz do projeto, rode o seguinte comando no terminal:
+**Npm**
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+    npm install
+**Yarn**
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
+    yarn
+Isso irá baixar todas as dependências, após isso, crie na pasta raiz do projeto um arquivo **.env.local** com as seguintes variáveis:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+    FULL_ACCESS_TOKEN=416c6b4471166470865d20e8451872
+    NEXT_PUBLIC_READONLY_TOKEN=9877f1cb1349478ec70040b6b4fa18
+Depois, rode o seguinte comando para iniciar o projeto:
+**Npm**
 
-## Learn More
+    npm run dev
+    
+**Yarn**
 
-To learn more about Next.js, take a look at the following resources:
+    yarn dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 👾 Agradecimentos
+Gostaria de agradecer aos instrutores da Alura, [@omariosouto](https://github.com/omariosouto) [@peas](https://github.com/peas) e [@juunegreiros](https://github.com/juunegreiros) por esta incrível jornada pelo conhecimento do Front-end moderno com essas incríveis tecnologias!
