@@ -18,6 +18,7 @@ import {
   LogoAreaTextBold,
   LogoImage,
 } from '../styles/login-styles';
+import Head from 'next/head';
 
 export default function Login() {
   const router = useRouter();
@@ -54,70 +55,75 @@ export default function Login() {
   }, [error, toast]);
 
   return (
-    <Flex as="main" flex="1" alignItems="center" justifyContent="center">
-      <LoginScreen>
-        <LogoArea>
-          <LogoImage />
+    <>
+      <Head>
+        <title>Alurakut - Login</title>
+      </Head>
+      <Flex as="main" flex="1" alignItems="center" justifyContent="center">
+        <LoginScreen>
+          <LogoArea>
+            <LogoImage />
 
-          <LogoAreaText>
-            <LogoAreaTextBold>Conecte-se</LogoAreaTextBold> aos seus amigos e
-            familiares usando recados e mensagens instantâneas
-          </LogoAreaText>
-          <LogoAreaText>
-            <LogoAreaTextBold>Conheça</LogoAreaTextBold> novas pessoas através
-            de amigos de seus amigos e comunidades
-          </LogoAreaText>
-          <LogoAreaText>
-            <LogoAreaTextBold>Compartilhe</LogoAreaTextBold> seus vídeos, fotos
-            e paixões em um só lugar
-          </LogoAreaText>
-        </LogoArea>
+            <LogoAreaText>
+              <LogoAreaTextBold>Conecte-se</LogoAreaTextBold> aos seus amigos e
+              familiares usando recados e mensagens instantâneas
+            </LogoAreaText>
+            <LogoAreaText>
+              <LogoAreaTextBold>Conheça</LogoAreaTextBold> novas pessoas através
+              de amigos de seus amigos e comunidades
+            </LogoAreaText>
+            <LogoAreaText>
+              <LogoAreaTextBold>Compartilhe</LogoAreaTextBold> seus vídeos,
+              fotos e paixões em um só lugar
+            </LogoAreaText>
+          </LogoArea>
 
-        <FormArea onSubmit={handleFormSubmit}>
-          <ClassBox
-            as="form"
-            minHeight={{ base: '224px', lg: '282px' }}
-            marginBottom="3"
-          >
-            <ClassBoxText>
-              Acesse agora mesmo com seu usuário do <strong>GitHub</strong>
-            </ClassBoxText>
-            <FormInput
-              placeholder="Usuário"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
+          <FormArea onSubmit={handleFormSubmit}>
+            <ClassBox
+              as="form"
+              minHeight={{ base: '224px', lg: '282px' }}
+              marginBottom="3"
+            >
+              <ClassBoxText>
+                Acesse agora mesmo com seu usuário do <strong>GitHub</strong>
+              </ClassBoxText>
+              <FormInput
+                placeholder="Usuário"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
 
-            {userName.length === 0 ? 'Preencha o campo' : ''}
+              {userName.length === 0 ? 'Preencha o campo' : ''}
 
-            <FormButton type="submit">Login</FormButton>
-          </ClassBox>
+              <FormButton type="submit">Login</FormButton>
+            </ClassBox>
 
-          <ClassBox as="footer">
-            <ClassBoxText>
-              Ainda não é membro? <br />
-              <Link
-                href="/login"
-                textDecoration="none"
-                color="customColor.primary"
-              >
-                <strong>ENTRAR JÁ</strong>
-              </Link>
-            </ClassBoxText>
-          </ClassBox>
-        </FormArea>
+            <ClassBox as="footer">
+              <ClassBoxText>
+                Ainda não é membro? <br />
+                <Link
+                  href="/login"
+                  textDecoration="none"
+                  color="customColor.primary"
+                >
+                  <strong>ENTRAR JÁ</strong>
+                </Link>
+              </ClassBoxText>
+            </ClassBox>
+          </FormArea>
 
-        <FooterArea>
-          <Text fontSize="xs" textAlign="center">
-            © 2021 alura.com.br -{' '}
-            <FooterLink href="/">Sobre o Orkut.br</FooterLink> -{' '}
-            <FooterLink href="/">Centro de segurança</FooterLink> -{' '}
-            <FooterLink href="/">Privacidade</FooterLink> -{' '}
-            <FooterLink href="/">Termos</FooterLink> -{' '}
-            <FooterLink href="/">Contato</FooterLink>
-          </Text>
-        </FooterArea>
-      </LoginScreen>
-    </Flex>
+          <FooterArea>
+            <Text fontSize="xs" textAlign="center">
+              © 2021 alura.com.br -{' '}
+              <FooterLink href="/">Sobre o Orkut.br</FooterLink> -{' '}
+              <FooterLink href="/">Centro de segurança</FooterLink> -{' '}
+              <FooterLink href="/">Privacidade</FooterLink> -{' '}
+              <FooterLink href="/">Termos</FooterLink> -{' '}
+              <FooterLink href="/">Contato</FooterLink>
+            </Text>
+          </FooterArea>
+        </LoginScreen>
+      </Flex>
+    </>
   );
 }

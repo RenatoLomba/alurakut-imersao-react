@@ -15,6 +15,7 @@ import { Api } from '../data/api';
 import { GetServerSideProps } from 'next';
 import nookies from 'nookies';
 import jwt from 'jsonwebtoken';
+import Head from 'next/head';
 
 type HomeProps = {
   githubUser: string;
@@ -66,6 +67,9 @@ export default function Home({ githubUser }: HomeProps) {
 
   return (
     <>
+      <Head>
+        <title>Alurakut - Bem-vindo {githubUser}!</title>
+      </Head>
       <AlurakutMenu githubUser={githubUser} />
       <MainGrid>
         <Flex
