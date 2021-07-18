@@ -4,6 +4,10 @@
 ## 🚀 Sobre
 Projeto construído durante a Imersão React #3 da Alura, utilizando React com NextJs, projeto é uma reinvenção da famosa rede social Orkut do passado, agora resgatada, utilizando tecnologias Front-end mais modernas!
 
+## 📱 Links
+
+- [App on Vercel](https://alurakut-imersao-react-neon.vercel.app/)
+
 ## 🔧 Ferramentas utilizadas
 
  - [React](https://pt-br.reactjs.org/)
