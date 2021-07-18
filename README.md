@@ -1,5 +1,5 @@
 # Alurakut
-[thumbnail-gif](https://github.com/RenatoLomba/alurakut-imersao-react/blob/main/public/images/GIF%2018-07-2021%2017-32-10.gif "GIF 18-07-2021 17-32-10.gif")
+![thumbnail-gif](https://github.com/RenatoLomba/alurakut-imersao-react/blob/main/public/images/GIF%2018-07-2021%2017-32-10.gif "GIF 18-07-2021 17-32-10.gif")
 
 ## 🚀 Sobre
 Projeto construído durante a Imersão React #3 da Alura, utilizando React com NextJs, projeto é uma reinvenção da famosa rede social Orkut do passado, agora resgatada, utilizando tecnologias Front-end mais modernas!
