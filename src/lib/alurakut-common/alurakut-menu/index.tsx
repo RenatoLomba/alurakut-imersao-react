@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { Box, Button, Flex, Image, Input } from '@chakra-ui/react';
 import { BASE_URL, v } from '..';
 import { AlurakutMenuNav } from '../alurakut-menu-nav';
 import { AlurakutMenuLink } from '../alurakut-menu-link';
 import { AlurakutMenuProfileSidebar } from '../alurakut-profile-sidebar-menu';
+import nookies from 'nookies';
+import { useRouter } from 'next/router';
 
 type AlurakutMenuProps = {
   githubUser: string;
@@ -11,12 +13,19 @@ type AlurakutMenuProps = {
 
 export const AlurakutMenu = ({ githubUser }: AlurakutMenuProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
 
   const linkList = [
     { name: 'Inicio', slug: '/' },
     { name: 'Amigos', slug: '/amigos' },
     { name: 'Comunidades', slug: '/comunidades' },
   ];
+
+  const handleLogout: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    e.preventDefault();
+    nookies.destroy(null, 'USER_TOKEN');
+    router.push('/login');
+  };
 
   return (
     <Box as="header" width="100%" backgroundColor="primary.800">
@@ -50,7 +59,9 @@ export const AlurakutMenu = ({ githubUser }: AlurakutMenuProps) => {
         </AlurakutMenuNav>
 
         <AlurakutMenuNav marginLeft="auto">
-          <AlurakutMenuLink href="/logout">Sair</AlurakutMenuLink>
+          <AlurakutMenuLink href="/" onClick={handleLogout}>
+            Sair
+          </AlurakutMenuLink>
           <Box>
             <Input
               placeholder="Pesquisar no Orkut"

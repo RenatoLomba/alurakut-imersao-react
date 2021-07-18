@@ -13,13 +13,15 @@ export class Api {
     );
     if (!response.ok) throw new Error(response.statusText);
     const json = await response.json();
-    const data: ProfileRelation[] = json.map((item: any) => {
-      return {
-        id: item.id,
-        imgUrl: item.avatar_url,
-        title: item.login,
-      };
-    });
+    const data: ProfileRelation[] = json.map(
+      (item: { id: string; avatar_url: string; login: string }) => {
+        return {
+          id: item.id,
+          imgUrl: item.avatar_url,
+          title: item.login,
+        };
+      },
+    );
     return data;
   }
 
@@ -54,5 +56,23 @@ export class Api {
     });
     const json = await response.json();
     return json.data;
+  }
+
+  async signIn(githubUser: string): Promise<{ token: string }> {
+    const res = await fetch('https://alurakut.vercel.app/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ githubUser }),
+    });
+    if (!res.ok) throw new Error(res.statusText);
+    const json = await res.json();
+    return json;
+  }
+
+  async userExist(githubUser: string): Promise<boolean> {
+    const res = await fetch(`https://api.github.com/users/${githubUser}`);
+    return res.ok;
   }
 }

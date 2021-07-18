@@ -12,10 +12,15 @@ import { BoxButton } from '../components/box-button';
 import { Subtitle } from '../components/subtitle';
 import { ProfileRelation } from '../models/profile-relation';
 import { Api } from '../data/api';
+import { GetServerSideProps } from 'next';
+import nookies from 'nookies';
+import jwt from 'jsonwebtoken';
 
-const github = 'RenatoLomba';
+type HomeProps = {
+  githubUser: string;
+};
 
-export default function Home() {
+export default function Home({ githubUser }: HomeProps) {
   const [communities, setCommunities] = useState<ProfileRelation[]>([]);
   const [communityName, setCommunityName] = useState('');
   const [communityImageUrl, setCommunityImageUrl] = useState('');
@@ -29,7 +34,7 @@ export default function Home() {
     const community = {
       title: communityName,
       imgUrl: communityImageUrl,
-      creatorSlug: github,
+      creatorSlug: githubUser,
     };
 
     const createdCommunity = await api.createCommunity(community);
@@ -43,19 +48,25 @@ export default function Home() {
   useEffect(() => {
     const api = new Api();
     const fetchData = async () => {
-      const responseFollowers = await api.getRelationsData(github, 'followers');
-      const responseFavorites = await api.getRelationsData(github, 'following');
+      const responseFollowers = await api.getRelationsData(
+        githubUser,
+        'followers',
+      );
+      const responseFavorites = await api.getRelationsData(
+        githubUser,
+        'following',
+      );
       const responseCommunities = await api.getCommunitiesGraphQL();
       setFollowers(responseFollowers);
       setFavorites(responseFavorites);
       setCommunities(responseCommunities);
     };
     fetchData();
-  }, []);
+  }, [githubUser]);
 
   return (
     <>
-      <AlurakutMenu githubUser={github} />
+      <AlurakutMenu githubUser={githubUser} />
       <MainGrid>
         <Flex
           as="aside"
@@ -63,7 +74,7 @@ export default function Home() {
           flexDirection="column"
           gridArea={{ lg: 'leftArea' }}
         >
-          <ProfileSidebar github={github} />
+          <ProfileSidebar github={githubUser} />
         </Flex>
         <Flex flexDirection="column" gridArea={{ lg: 'mainArea' }}>
           <WhiteBox>
@@ -113,3 +124,32 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { USER_TOKEN } = nookies.get(ctx);
+
+  if (!USER_TOKEN)
+    return { redirect: { destination: '/login', permanent: false } };
+
+  const { githubUser } = jwt.decode(USER_TOKEN) as {
+    githubUser: string;
+    roles: string[];
+  };
+
+  const api = new Api();
+  const isAuthenticated = await api.userExist(githubUser);
+
+  if (!isAuthenticated) {
+    nookies.destroy(ctx, 'USER_TOKEN');
+    return {
+      redirect: {
+        destination: `/login?error=Usuário "${githubUser}" não existe`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { githubUser },
+  };
+};
